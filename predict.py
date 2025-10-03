@@ -9,7 +9,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, precision_score, accuracy_score, f1_score, recall_score
 from sklearn.utils.class_weight import compute_class_weight
 import jieba
-from tensorflow import keras
 import tensorflow as tf
 from flask import Flask, render_template_string, request, jsonify
 
@@ -283,7 +282,7 @@ def train_model():
     ]
 
     # 模型训练
-    model.fit(train_seq_mat, train_y_encoded, batch_size=32, epochs=50,  # 修改为50轮
+    model.fit(train_seq_mat, train_y_encoded, batch_size=32, epochs=50,  # 训练轮数为50轮
               validation_data=(val_seq_mat, val_y_encoded),
               class_weight=class_weight_dict,
               callbacks=cb)
@@ -408,13 +407,13 @@ def analyze():
     data = request.get_json()
     text = data.get('text', '')
     if not text:
-        return jsonify({'result': '请输入文本'})
+        return jsonify({'result': '请输入文本喵'})
 
     try:
         result = predict_(text)
         return jsonify({'result': result})
     except Exception as e:
-        return jsonify({'result': f'分析出错: {str(e)}'})
+        return jsonify({'result': f'分析出错喵: {str(e)}'})
 
 
 def main():
@@ -427,13 +426,13 @@ def main():
 
     # 检查是否已有模型，没有则训练
     if not model_path.exists():
-        print("没有找到已有模型，正在训练新模型...")
+        print("没有找到已有模型，正在训练新模型喵...")
         train_model()
     else:
-        print("发现已有模型，将在需要时加载")
+        print("发现已有模型，将在需要时加载喵")
 
-    print("\n情感分析系统已启动！")
-    print("请在浏览器中访问 http://127.0.0.1:5000 来使用系统")
+    print("\n情感分析系统已启动喵！")
+    print("请在浏览器中访问 http://127.0.0.1:5000 来使用系统喵！")
 
     # 启动 Flask 应用
     app.run(debug=True)
