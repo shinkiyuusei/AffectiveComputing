@@ -16,7 +16,6 @@ sentiment-analysis-system/
 │   └── label_encoder.pkl   # 标签编码器（映射Label与情感类别）
 ├── stopwords.txt          # 中文停用词表（可选，用于过滤无意义词汇）
 ├── training_log.csv       # 模型训练日志（自动生成，记录loss、accuracy等指标）
-├── app.py                 # 核心代码（数据处理、模型训练、Flask服务）
 └── README.md              # 项目说明文档
 
 核心功能模块
